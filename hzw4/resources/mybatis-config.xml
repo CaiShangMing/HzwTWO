@@ -8,6 +8,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0 //EN"
 		<setting name="lazyLoadingEnabled" value="false"/>
 	</settings>
 	<typeAliases>
-		<package name="cn.hzw"/>
+		<package name="cn.hzw.cm"/>
 	</typeAliases>
 </configuration>
