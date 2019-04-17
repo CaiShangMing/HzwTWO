@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//WebRoot/WEB-INF/jsp/common/error.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/common/head.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/contextManage/contextManage.jsp=UTF-8
+encoding//WebRoot/WEB-INF/jsp/loginAndRegister/login.jsp=UTF-8
+encoding//WebRoot/statics/css/backStage/admin.css=UTF-8
+encoding//WebRoot/statics/css/backStage/pintuer.css=UTF-8
+encoding//WebRoot/statics/localjs/isRegister.js=UTF-8
+encoding//src/cn/hzw/controller/AdminController.java=UTF-8
+encoding//src/cn/hzw/dao/User_roleMapper.java=UTF-8
+encoding/<project>=UTF-8
