@@ -1,7 +1,7 @@
 package cn.hzw.pojo;
 
 public class Category {
-    private Integer id;
+	private Integer id;
 
     private String context;
 

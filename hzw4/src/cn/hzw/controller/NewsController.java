@@ -43,7 +43,7 @@ public class NewsController {
 					newsList=newsService.findByCurrentPage((newsPage.getCurrentPage()-1)*newsPage.getPageSize(), newsPage.getPageSize());
 					model.addAttribute("newsList", newsList);
 					model.addAttribute("newsPage", newsPage);
-					return "/contextManage/contextManage";
+					return "contextManage/contextManage";
 				}else{
 					return "common/main";
 				}
@@ -60,6 +60,6 @@ public class NewsController {
 	//添加内容页
 	@RequestMapping("/addContextPage")
 	public String addContextPage(){
-		return "/contextManage/addContextPage";
+		return "contextManage/addContextPage";
 	}
 }

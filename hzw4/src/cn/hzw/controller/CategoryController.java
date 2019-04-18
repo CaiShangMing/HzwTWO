@@ -45,7 +45,7 @@ public class CategoryController {
 					categoryList = categoryService.findByCurrent((categoryPage.getCurrentPage() - 1)*categoryPage.getPageSize(),categoryPage.getPageSize());
 					model.addAttribute("categoryList", categoryList);
 					model.addAttribute("categoryPage", categoryPage);
-					return "/categoryManage/categoryManage";
+					return "categoryManage/categoryManage";
 				}
 			}
 			return "loginAndRegister/login";

@@ -98,29 +98,29 @@ function isRegister(){
 			success:function(data){
 				if(data.blurMessage=="ok"){
 					alert("注册成功，马上登录吧");
-					window.location.href=localPath+"loginAndRegister/login";
+					window.location.href=localPath+"/login";
 					/*
 					 * 为什么要return false，还没找到原因
 					 */
 					return false;
 				}else if(data.blurMessage=="nameExist"){
 					alert(username+"用户名已存在，请更换");
-					window.location.href=localPath+"loginAndRegister/register";
+					window.location.href=localPath+"/register";
 					return false;
 				}else if(data.blurMessage=="fail"){
 					alert("用户注册失败");
-					window.location.href=localPath+"loginAndRegister/register";
+					window.location.href=localPath+"/register";
 					return false;
 				}else{
 					alert("出错了");
-					window.location.href=localPath+"loginAndRegister/register";
+					window.location.href=localPath+"/register";
 					return false;
 				}
 			}
 		});	
 	}else{
 		alert("注册信息不正确，请注意提示");
-		window.location.href=localPath+"loginAndRegister/register";
+		window.location.href=localPath+"/register";
 		return false;
 	}
 };
