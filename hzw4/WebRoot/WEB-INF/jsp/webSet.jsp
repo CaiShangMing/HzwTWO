@@ -126,16 +126,21 @@
 						<label>基础信息选择</label>
 					</div>
 					<div class="field">
-					<input type="text" class="input" name="s_id" value="第${currentWebSet.websetid}套" />
-						<select id="selectWebSet">
-							<option selected="selected" value="${currentWebSet.websetid}">${currentWebSet.websetid}</option>
+					<input type="text" class="input" name="s_id" value="当前使用第${currentWebSet.websetid}套" />
+						<!-- 在select中默认选中当前使用的基础信息模板，解决了在下拉框中重复出现默认选中的ID序号 -->
+						<select id="selectWebSet" id="websetid">
 							<c:forEach var="currentWebSetId" items="${allWebSetId}">
-							<!-- 未完成判断当前，出现重复数字 -->
-								<c:if test="${currentWebSetId ne 2 }">
-									<option value="${ currentWebSetId}">
-										${ currentWebSetId}
-									</option>
-								</c:if>
+							<!-- 第一种方法 -->
+								<option value="${currentWebSetId}" <c:if test="${currentWebSetId eq currentWebSet.websetid}">selected="selected"</c:if>>${currentWebSetId}</option> 
+							<!-- 第二种方法 -->
+								<%-- <c:choose>
+									<c:when test="${currentWebSetId eq currentWebSet.websetid }">
+											<option selected="selected" value="${currentWebSetId}">${currentWebSetId}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${currentWebSetId}">${currentWebSetId}</option>
+									</c:otherwise>
+								</c:choose>		 --%>	
 							</c:forEach>	
 						</select>
 						<div class="tips"></div>

@@ -30,7 +30,7 @@ public class CommonController {
 		//第一个：全局对象webset
 		List<Integer> allWebSetId=new ArrayList<Integer>();
 		allWebSetId=webSetService.findAll();
-		Webset currentWebSet=webSetService.findById(1);
+		Webset currentWebSet=webSetService.findById(2);
 		session.setAttribute(Constant.ALLWEBSETID, allWebSetId);
 		session.setAttribute(Constant.CURRENTWEBSET, currentWebSet);
 		return "common/main";
