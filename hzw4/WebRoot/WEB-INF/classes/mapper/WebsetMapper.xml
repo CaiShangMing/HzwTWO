@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.hzw.dao.WebsetMapper" >
+  <resultMap id="BaseResultMap" type="cn.hzw.pojo.Webset" >
+    <id column="webSetID" property="websetid" jdbcType="INTEGER" />
+    <result column="webSetTheme" property="websettheme" jdbcType="VARCHAR" />
+    <result column="webSetLogo" property="websetlogo" jdbcType="VARCHAR" />
+    <result column="webSetKeyword" property="websetkeyword" jdbcType="VARCHAR" />
+    <result column="webSetDescribe" property="websetdescribe" jdbcType="VARCHAR" />
+    <result column="webSetManager" property="websetmanager" jdbcType="VARCHAR" />
+    <result column="webSetPhone" property="websetphone" jdbcType="VARCHAR" />
+    <result column="webSetQQ" property="websetqq" jdbcType="VARCHAR" />
+    <result column="webSetQQGroup" property="websetqqgroup" jdbcType="VARCHAR" />
+    <result column="webSetEmail" property="websetemail" jdbcType="VARCHAR" />
+    <result column="webSetAddress" property="websetaddress" jdbcType="VARCHAR" />
+    <result column="webSetCopyRight" property="websetcopyright" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    webSetID, webSetTheme, webSetLogo, webSetKeyword, webSetDescribe, webSetManager, 
+    webSetPhone, webSetQQ, webSetQQGroup, webSetEmail, webSetAddress, webSetCopyRight
+  </sql>
+  <!-- 通过ID查询当前所使用webset基础信息 -->
+  <select id="selectById" resultType="Webset">
+  	select * from webset where webSetID=#{websetid}
+  </select>
+  <!-- 查询webset基础信息的总数量 -->
+  <select id="selectAll" resultType="Integer">
+  	select webSetID from webset
+  </select>
+  <!-- 添加网站基础信息套装 -->
+  <insert id="insertWebSet" parameterType="WebSet">
+  	insert into webset(webSetTheme, webSetLogo, webSetKeyword, webSetDescribe, webSetManager, 
+    							webSetPhone, webSetQQ, webSetQQGroup, webSetEmail, webSetAddress,
+    							 webSetCopyRight)values(#{websettheme},#{websetlogo},#{websetkeyword},#{websetdescribe}
+    							 #{websetmanager},#{websetphone},#{websetqq},#{websetqqgroup},#{websetemail},#{websetaddress},
+    							 #{websetcopyright})
+  </insert>
+</mapper>

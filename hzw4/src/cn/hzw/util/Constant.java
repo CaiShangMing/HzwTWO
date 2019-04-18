@@ -22,4 +22,8 @@ public class Constant {
 	//添加标题失焦信息
 	public final static String ADDCATEGORYBLURMESSAGE="addCategoryBlurMessage";
 
+	//当前网站基础信息套装
+	public final static String CURRENTWEBSET="currentWebSet";
+	//网站基础信息套装总量
+	public final static String ALLWEBSETID="allWebSetId";
 }

@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONArray;
 
 import cn.hzw.pojo.User_role;
+import cn.hzw.pojo.Webset;
 import cn.hzw.service.user.UserService;
+import cn.hzw.service.webset.WebSetService;
 import cn.hzw.util.Constant;
 import cn.hzw.util.Page;
 
@@ -28,15 +30,17 @@ public class AdminController {
 	private Logger logger=Logger.getLogger(AdminController.class);
 	@Resource
 	private UserService userService;
+	@Resource
+	private WebSetService webSetService;
 	//1.后台主页（管理员和会员）
 	@RequestMapping("/homePage")
 	public String homePage(HttpSession session){
 		if(session.getAttribute(Constant.USER_SESSION)!=null){
 			User_role loginUser=(User_role)session.getAttribute(Constant.USER_SESSION);
 			if(loginUser.getId()==1){
-				return "adminPage";
+				return "adminManager/adminPage";
 			}else{
-				return "memberPage";
+				return "memberManager/memberPage";
 			}
 		}
 		return "loginAndRegister/login";
@@ -70,7 +74,7 @@ public class AdminController {
 					userList=userService.findAllUserLimit((userPage.getCurrentPage()-1)*userPage.getPageSize(), userPage.getPageSize());
 					session.setAttribute("userList", userList);
 					session.setAttribute("userPage", userPage);
-					return "changeMeb/changeMeb";
+					return "adminManager/changeMeb";
 				}
 			}
 		} catch (Exception e) {
@@ -86,7 +90,7 @@ public class AdminController {
 		if(session.getAttribute(Constant.USER_SESSION)!=null){
 			User_role loginUser=(User_role)session.getAttribute(Constant.USER_SESSION);
 			if(loginUser.getId()==1){
-				return "changeMeb/addMeb";
+				return "adminManager/addMeb";
 			}
 		}
 		return "loginAndRegister/login";
@@ -95,20 +99,22 @@ public class AdminController {
 	@RequestMapping("/modify")
 	public String modify(Model model,HttpSession session,@RequestParam(value="id",required=false)Integer id){
 		try {
-			if(session.getAttribute(Constant.USER_SESSION)!=null){
+			if(null!=session.getAttribute(Constant.USER_SESSION)){
 				User_role loginUser=(User_role)session.getAttribute(Constant.USER_SESSION);
 				if(loginUser.getId()==1){
 					User_role modifyUser=userService.findById(id);
 					session.setAttribute("modifyUser", modifyUser);
-					return "changeMeb/modifyMeb";
+					return "adminManager/modifyMeb";
 				}
+				return "loginAndRegister/login";
 			}
+			return "loginAndRegister/login";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.info("modify出错了");
 			model.addAttribute(Constant.ERROR_MESSAGE, "发生错误");
-		}
-		return "loginAndRegister/login";
+			return "loginAndRegister/login";
+		}	
 	}
 	//6.修改会员信息
 	@RequestMapping(value="/modifyUser",method=RequestMethod.POST)

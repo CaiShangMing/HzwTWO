@@ -10,7 +10,7 @@ function addCategory(){
 			success:function(data){
 				if(data.categoryMessage=="ok"){
 					alert("添加成功");
-					window.location.href=realPath+"/categoryManage";
+					window.location.href=localPath+"/categoryManage";
 				}else if(data.categoryMessage=="fail"){
 					alert("添加失败");
 				}else if(data.categoryMessage=="repeat"){

@@ -57,14 +57,14 @@
 		</javaClientGenerator>
 
 
-		<table tableName="category" 
-					domainObjectName="Category"
-					enableCountByExample="false" 
-					enableUpdateByExample="false"
-					enableDeleteByExample="false"
-					enableSelectByExample="false"
-					selectByExampleQueryId="false"/>
-			
+	<table tableName="imgpic" domainObjectName="Imgpic"
+		enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false" />
+	<table tableName="webset" domainObjectName="Webset"
+		enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false" />
 			
 	</context>
 </generatorConfiguration>
