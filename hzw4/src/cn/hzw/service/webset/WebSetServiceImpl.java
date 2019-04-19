@@ -16,21 +16,21 @@ public class WebSetServiceImpl implements WebSetService {
 	private WebsetMapper webSetMapper;
 	//通过ID寻找对于的网站基础信息套装
 	@Override
-	public Webset findById(int id) {
+	public Webset findById(int id) throws Exception {
 		// TODO Auto-generated method stub
 		return webSetMapper.selectById(id);
 	}
 
 	//查询所有网站基础信息套装总量
 	@Override
-	public List<Integer> findAll() {
+	public List<Integer> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return webSetMapper.selectAll();
 	}
 
 	//添加网站基础信息套装
 	@Override
-	public int addWebSet(Webset webSet) {
+	public int addWebSet(Webset webSet) throws Exception {
 		// TODO Auto-generated method stub
 		return webSetMapper.insertWebSet(webSet);
 	}

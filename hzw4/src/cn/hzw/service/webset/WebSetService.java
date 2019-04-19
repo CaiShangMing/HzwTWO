@@ -7,9 +7,9 @@ import cn.hzw.pojo.Webset;
 public interface WebSetService {
 
 	//通过ID寻找对于的网站信息
-	public Webset findById(int id);
+	public Webset findById(int id) throws Exception;
 	//查询网站基础信息的总量
-	public List<Integer> findAll();
+	public List<Integer> findAll() throws Exception;
 	//添加网站基础信息套装
-	public int addWebSet(Webset webSet);
+	public int addWebSet(Webset webSet)throws Exception;
 }

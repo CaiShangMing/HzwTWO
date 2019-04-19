@@ -26,4 +26,8 @@ public class Constant {
 	public final static String CURRENTWEBSET="currentWebSet";
 	//网站基础信息套装总量
 	public final static String ALLWEBSETID="allWebSetId";
+/*	//被修改的基础信息套装ID
+	public final static String CHANGEWEBSET="changeWebSet";*/
+	//修改基础信息套装回传信息
+	public final static String CHANGEWEBSETMESSAGE="changeWebSetMessage";
 }

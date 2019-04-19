@@ -122,13 +122,14 @@
 					</div>
 				</div>
 				<div class="form-group">
+				<!-- 在这里实现了模板切换 -->
 					<div class="label">
 						<label>基础信息选择</label>
 					</div>
 					<div class="field">
-					<input type="text" class="input" name="s_id" value="当前使用第${currentWebSet.websetid}套" />
+					<input type="text" class="input" name="s_id" id="websetid" value="当前使用第${currentWebSet.websetid}套" />
 						<!-- 在select中默认选中当前使用的基础信息模板，解决了在下拉框中重复出现默认选中的ID序号 -->
-						<select id="selectWebSet" id="websetid">
+						<select id="selectWebSet" >
 							<c:forEach var="currentWebSetId" items="${allWebSetId}">
 							<!-- 第一种方法 -->
 								<option value="${currentWebSetId}" <c:if test="${currentWebSetId eq currentWebSet.websetid}">selected="selected"</c:if>>${currentWebSetId}</option> 
@@ -152,7 +153,11 @@
 					</div>
 					<div class="field">
 						<button class="button bg-main icon-check-square-o" type="submit" onclick="return webset()">
-							确定</button>
+							保存</button>
+						<button class="button bg-main icon-check-square-o" type="submit" onclick="return webset()">
+							修改</button>
+						<button class="button bg-main icon-check-square-o" type="submit" onclick="return webset()">
+							删除</button>
 					</div>
 				</div>
 			</form>
