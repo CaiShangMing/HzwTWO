@@ -52,9 +52,12 @@ public class AdminController {
 			if(session.getAttribute(Constant.USER_SESSION)!=null){
 				User_role loginUser=(User_role)session.getAttribute(Constant.USER_SESSION);
 				if(loginUser.getId()==1){
+					//因为在页面需要一个基础信息总量的数据，所以在这里进行一个查询
 					List<Integer> allWebSetId=new ArrayList<Integer>();
 					allWebSetId=webSetService.findAll();
+					Webset webset=webSetService.findById((Integer)session.getAttribute(Constant.CURRENTWEBSETID));
 					session.setAttribute(Constant.ALLWEBSETID, allWebSetId);
+					session.setAttribute(Constant.CURRENTWEBSET,webset);
 					return "webSet";
 				}
 			}

@@ -28,11 +28,55 @@
   	select webSetID from webset
   </select>
   <!-- 添加网站基础信息套装 -->
-  <insert id="insertWebSet" parameterType="WebSet">
+  <insert id="insertWebSet" >
   	insert into webset(webSetTheme, webSetLogo, webSetKeyword, webSetDescribe, webSetManager, 
     							webSetPhone, webSetQQ, webSetQQGroup, webSetEmail, webSetAddress,
-    							 webSetCopyRight)values(#{websettheme},#{websetlogo},#{websetkeyword},#{websetdescribe}
-    							 #{websetmanager},#{websetphone},#{websetqq},#{websetqqgroup},#{websetemail},#{websetaddress},
-    							 #{websetcopyright})
+    							 webSetCopyRight)values(#{websettheme},#{websetlogo},#{websetkeyword},
+    							 #{websetdescribe},#{websetmanager},#{websetphone},#{websetqq},
+    							 #{websetqqgroup},#{websetemail},#{websetaddress},#{websetcopyright})
   </insert>
+  <!-- 通过标题查询是否有该网站基础信息套装 -->
+  <select id="selectByTheme" resultType="int">
+  	select count(1) from webset where webSetTheme=#{websettheme}
+  </select>
+  <!-- 通过ID锁定，修改网站基础信息套装 -->
+  <update id="updateById" >
+  	update webset set
+  	<trim prefix="" prefixOverrides=",">
+  		<if test="websettheme!=null and websettheme!=''">
+  			,webSetTheme=#{websettheme}
+  		</if>
+  		<if test="websetlogo!=null and websetlogo!=''">
+  			,webSetLogo=#{websetlogo}
+  		</if>
+  		<if test="websetkeyword!=null and websetkeyword!=''">
+  			,webSetKeyword=#{websetkeyword}
+  		</if>
+  		<if test="websetdescribe!=null and websetdescribe!=''">
+  			,webSetDescribe=#{websetdescribe}
+  		</if>
+  		<if test="websetmanager!=null and websetmanager!=''">
+  			,webSetManager=#{websetmanager}
+  		</if>
+  		<if test="websetphone!=null and websetphone!=''">
+  			,webSetPhone=#{websetphone}
+  		</if>
+  		<if test="websetqq!=null and websetqq!=''">
+  			,webSetQQ=#{websetqq}
+  		</if>
+  		<if test="websetqqgroup!=null and websetqqgroup!=''">
+  			,webSetQQGroup=#{websetqqgroup}
+  		</if>
+  		<if test="websetemail!=null and websetemail!=''">
+  			,webSetEmail=#{websetemail}
+  		</if>
+  		<if test="websetaddress!=null and websetaddress!=''">
+  			,webSetAddress=#{websetaddress}
+  		</if>
+  		<if test="websetcopyright!=null and websetcopyright!=''">
+  			,webSetCopyRight=#{websetcopyright}
+  		</if>
+  	</trim>
+  	where webSetID=#{websetid}
+  </update>
 </mapper>

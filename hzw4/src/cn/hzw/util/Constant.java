@@ -22,12 +22,16 @@ public class Constant {
 	//添加标题失焦信息
 	public final static String ADDCATEGORYBLURMESSAGE="addCategoryBlurMessage";
 
+	//当前网站基础信息套装ID
+	public final static String CURRENTWEBSETID="currentWebSetId";
 	//当前网站基础信息套装
 	public final static String CURRENTWEBSET="currentWebSet";
 	//网站基础信息套装总量
 	public final static String ALLWEBSETID="allWebSetId";
-/*	//被修改的基础信息套装ID
-	public final static String CHANGEWEBSET="changeWebSet";*/
 	//修改基础信息套装回传信息
 	public final static String CHANGEWEBSETMESSAGE="changeWebSetMessage";
+	//添加基础信息套装回传信息
+	public final static String ADDWEBSETMESSAGE="addWebSetMessage";
+	//修改基础信息套装回传信息
+	public final static String MODIFYWEBSETMESSAGE="modifyWebSetMessage";
 }

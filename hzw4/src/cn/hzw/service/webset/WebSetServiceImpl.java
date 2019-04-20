@@ -16,7 +16,7 @@ public class WebSetServiceImpl implements WebSetService {
 	private WebsetMapper webSetMapper;
 	//通过ID寻找对于的网站基础信息套装
 	@Override
-	public Webset findById(int id) throws Exception {
+	public Webset findById(Integer id) throws Exception {
 		// TODO Auto-generated method stub
 		return webSetMapper.selectById(id);
 	}
@@ -35,4 +35,19 @@ public class WebSetServiceImpl implements WebSetService {
 		return webSetMapper.insertWebSet(webSet);
 	}
 
+	//通过标题查询是否有对应的网站基础信息套装
+	@Override
+	public int findByWebSetTheme(String webSetTheme) throws Exception {
+		// TODO Auto-generated method stub
+		return webSetMapper.selectByTheme(webSetTheme);
+	}
+	
+	//通过ID锁定，修改网站基础信息套
+	@Override
+	public int modifyById(Webset newWebSet) throws Exception {
+		// TODO Auto-generated method stub
+		return webSetMapper.updateById(newWebSet);
+	}
+
+	
 }

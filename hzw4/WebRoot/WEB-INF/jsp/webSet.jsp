@@ -25,7 +25,7 @@
 						<label>网站标题：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input" name="stitle" id="websettheme" value="${currentWebSet. websettheme}" />
+						<input type="text" class="input" name="stitle" id="websettheme" value="${currentWebSet. websettheme}"  required="required"/>
 						<div class="tips"></div>
 					</div>
 				</div>
@@ -34,9 +34,9 @@
 						<label>网站LOGO：</label>
 					</div>
 					<div class="field">
-						<input type="text" id="url1" name="slogo" class="input tips"
+						<input type="text"  name="slogo" class="input tips"
 							style="width:25%; float:left;" value="${currentWebSet.websetlogo}" data-toggle="hover"
-							data-place="right" data-image="" id="websetlogo"/> <input type="button"
+							data-place="right" data-image="" id="websetlogo" required="required"/> <input type="button"
 							class="button bg-blue margin-left" id="image1" value="+ 浏览上传">
 					</div>
 				</div>
@@ -81,7 +81,7 @@
 						<label>QQ：</label>
 					</div>
 					<div class="field">
-						<input type="text" class="input" name="s_qq" id="websetqq"value="${currentWebSet.websetqq }" />
+						<input type="text" class="input" name="s_qq" id="websetqq"value="${currentWebSet.websetqq }" required="required" />
 						<div class="tips"></div>
 					</div>
 				</div>
@@ -123,11 +123,12 @@
 				</div>
 				<div class="form-group">
 				<!-- 在这里实现了模板切换 -->
+					<input type="hidden" id="websetid" value="${currentWebSet.websetid}">
 					<div class="label">
 						<label>基础信息选择</label>
 					</div>
 					<div class="field">
-					<input type="text" class="input" name="s_id" id="websetid" value="当前使用第${currentWebSet.websetid}套" />
+					<input type="text" class="input" name="s_id" value="当前使用第${currentWebSet.websetid}套" />
 						<!-- 在select中默认选中当前使用的基础信息模板，解决了在下拉框中重复出现默认选中的ID序号 -->
 						<select id="selectWebSet" >
 							<c:forEach var="currentWebSetId" items="${allWebSetId}">
@@ -152,11 +153,11 @@
 						<label></label>
 					</div>
 					<div class="field">
-						<button class="button bg-main icon-check-square-o" type="submit" onclick="return webset()">
-							保存</button>
-						<button class="button bg-main icon-check-square-o" type="submit" onclick="return webset()">
+						<button class="button bg-main icon-check-square-o" type="button" onclick="return addWebSet()">
+							添加</button>
+						<button class="button bg-main icon-check-square-o" type="button" onclick="return modifyWebSet()">
 							修改</button>
-						<button class="button bg-main icon-check-square-o" type="submit" onclick="return webset()">
+						<button class="button bg-main icon-check-square-o" type="button" onclick="return deleteWebSet()">
 							删除</button>
 					</div>
 				</div>

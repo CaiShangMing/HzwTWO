@@ -44,6 +44,7 @@ public class LoginAndRegisterController {
 			return JSONArray.toJSONString(model);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 			logger.info("=======isLogin出错了=======");
 			model.addAttribute(Constant.BLUR_MESSAGE, "请稍后再试或联系管理员");
 			return JSONArray.toJSONString(model);
