@@ -48,13 +48,25 @@ public class AdminController {
 	//2.管理员对于网站基本信息设置页
 	@RequestMapping("/webSet")
 	public String webSet(HttpSession session){
-		if(session.getAttribute(Constant.USER_SESSION)!=null){
-			User_role loginUser=(User_role)session.getAttribute(Constant.USER_SESSION);
-			if(loginUser.getId()==1){
-				return "webSet";
+		try {
+			if(session.getAttribute(Constant.USER_SESSION)!=null){
+				User_role loginUser=(User_role)session.getAttribute(Constant.USER_SESSION);
+				if(loginUser.getId()==1){
+					//因为在页面需要一个基础信息总量的数据，所以在这里进行一个查询
+					List<Integer> allWebSetId=new ArrayList<Integer>();
+					allWebSetId=webSetService.findAll();
+					Webset webset=webSetService.findById((Integer)session.getAttribute(Constant.CURRENTWEBSETID));
+					session.setAttribute(Constant.ALLWEBSETID, allWebSetId);
+					session.setAttribute(Constant.CURRENTWEBSET,webset);
+					return "webSet";
+				}
 			}
+			return "loginAndRegister/login";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.info("=====webSet出错了=======");
+			return "error";
 		}
-		return "loginAndRegister/login";
 	}
 	//3.管理员管理会员信息页
 	@RequestMapping("/changeMeb")
