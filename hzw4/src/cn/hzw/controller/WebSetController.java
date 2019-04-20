@@ -1,6 +1,7 @@
 package cn.hzw.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -28,15 +29,16 @@ public class WebSetController {
 	@ResponseBody
 	public Object selectWebSetId(HttpSession session,Model model,@RequestParam(value="selectWebSetId")Integer selectWebSetId){
 		try {
-			Webset currentWebSet=(Webset)session.getAttribute(Constant.CURRENTWEBSET);
+			ServletContext application=session.getServletContext();
+			Webset currentWebSet=(Webset)application.getAttribute(Constant.CURRENTWEBSET);
 			if(null!=selectWebSetId){
 				if(currentWebSet.getWebsetid()==selectWebSetId){
 					model.addAttribute(Constant.CHANGEWEBSETMESSAGE, "noChange");
 				}else{
 					currentWebSet=webSetService.findById(selectWebSetId);
-					session.setAttribute(Constant.CURRENTWEBSET, currentWebSet);
+					application.setAttribute(Constant.CURRENTWEBSET, currentWebSet);
 					//为了在进入webset的时候默认选择已经选取的webset套装，在这里保存一个ID信息
-					session.setAttribute(Constant.CURRENTWEBSETID, currentWebSet.getWebsetid());
+					application.setAttribute(Constant.CURRENTWEBSETID, currentWebSet.getWebsetid());
 					model.addAttribute(Constant.CURRENTWEBSET, currentWebSet);
 					model.addAttribute(Constant.CHANGEWEBSETMESSAGE, "ok");
 				}
@@ -94,6 +96,27 @@ public class WebSetController {
 			e.printStackTrace();
 			logger.info("========modifyWebSet出错了=========");
 			model.addAttribute(Constant.MODIFYWEBSETMESSAGE, "error");
+			return JSONArray.toJSONString(model);
+		}
+	}
+	//通过ID锁定，删除被选定的基础信息套装
+	@RequestMapping(value="/deleteWebSet")
+	@ResponseBody
+	public Object deleteWebSet(Model model,HttpSession session,@RequestParam(value="websetid")Integer websetid){
+		try {
+			ServletContext application=session.getServletContext();
+			if(webSetService.deleteById(websetid)>0){
+				application.removeAttribute(Constant.CURRENTWEBSETID);
+				model.addAttribute(Constant.DELETEWEBSETMESSAGE, "ok");
+			}else{
+				model.addAttribute(Constant.DELETEWEBSETMESSAGE, "fail");
+			}
+			return JSONArray.toJSONString(model);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.info("deleteWebSet出错了");
+			model.addAttribute(Constant.DELETEWEBSETMESSAGE, "error");
 			return JSONArray.toJSONString(model);
 		}
 	}

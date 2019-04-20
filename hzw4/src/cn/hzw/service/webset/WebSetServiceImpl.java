@@ -49,5 +49,12 @@ public class WebSetServiceImpl implements WebSetService {
 		return webSetMapper.updateById(newWebSet);
 	}
 
+	//通过ID锁定，删除网站基础信息套
+	@Override
+	public int deleteById(Integer websetid) throws Exception {
+		// TODO Auto-generated method stub
+		return webSetMapper.deleteById(websetid);
+	}
+
 	
 }

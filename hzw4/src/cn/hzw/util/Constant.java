@@ -34,4 +34,6 @@ public class Constant {
 	public final static String ADDWEBSETMESSAGE="addWebSetMessage";
 	//修改基础信息套装回传信息
 	public final static String MODIFYWEBSETMESSAGE="modifyWebSetMessage";
+	//删除基础信息套装回传信息
+	public final static String DELETEWEBSETMESSAGE="deleteWebSetMessage";
 }

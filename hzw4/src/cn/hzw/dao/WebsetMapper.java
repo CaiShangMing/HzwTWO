@@ -16,4 +16,6 @@ public interface WebsetMapper {
 	public int selectByTheme(String webSetTheme) throws Exception;
 	//通过ID锁定，修改网站基础信息套
 	public int updateById(Webset webset) throws Exception;
+	//通过ID锁定，删除网站基础信息套
+	public int deleteById(Integer websetid)throws Exception;
 }

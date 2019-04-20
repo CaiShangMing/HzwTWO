@@ -104,3 +104,31 @@ function modifyWebSet(){
 		}
 	});
 }
+function deleteWebSet(){
+	var localPath=$("#localPath").val();
+	var websetid=$("#websetid").val();
+	if(confirm("确定删除吗")){
+		//不知道为什么明明是使用post提交，但是当在后台使用post接收的时候会提示不能使用get方式提交？
+		$.ajax({
+			url:localPath+"/deleteWebSet",
+			type:"POST",
+			data:{"websetid":websetid},
+			dataType:"json",
+			success:function(data){
+				if(data.deleteWebSetMessage=="ok"){
+					alert("删除成功");
+					window.location.href=localPath+"/webSet";
+				}else if(data.deleteWebSetMessage="error"){
+					alert("出错了");
+					window.location.href=localPath+"/error";
+				}else{
+					alert("删除失败");
+					window.location.href=localPath+"/webSet";
+				}
+			}
+		});
+	}else{
+		window.location.href=localPath+"/webSet";
+	}
+	
+}

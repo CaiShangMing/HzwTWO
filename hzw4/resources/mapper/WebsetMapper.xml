@@ -79,4 +79,7 @@
   	</trim>
   	where webSetID=#{websetid}
   </update>
+  <delete id="deleteById">
+  	delete from webset where webSetID=#{websetid}
+  </delete>
 </mapper>

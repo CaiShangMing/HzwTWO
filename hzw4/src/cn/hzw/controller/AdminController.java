@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -49,15 +50,22 @@ public class AdminController {
 	@RequestMapping("/webSet")
 	public String webSet(HttpSession session){
 		try {
+			ServletContext application=session.getServletContext();
 			if(session.getAttribute(Constant.USER_SESSION)!=null){
 				User_role loginUser=(User_role)session.getAttribute(Constant.USER_SESSION);
 				if(loginUser.getId()==1){
 					//因为在页面需要一个基础信息总量的数据，所以在这里进行一个查询
 					List<Integer> allWebSetId=new ArrayList<Integer>();
 					allWebSetId=webSetService.findAll();
-					Webset webset=webSetService.findById((Integer)session.getAttribute(Constant.CURRENTWEBSETID));
-					session.setAttribute(Constant.ALLWEBSETID, allWebSetId);
-					session.setAttribute(Constant.CURRENTWEBSET,webset);
+					Webset webset=null;
+					//使用全局对象，保证在浏览器关闭，但是服务器没有关闭的情况下仍然会呈现我们选择到的网站基础信息套。
+					if(null!=application.getAttribute(Constant.CURRENTWEBSETID)&&application.getAttribute(Constant.CURRENTWEBSETID)!=""){
+						webset=webSetService.findById((Integer)application.getAttribute(Constant.CURRENTWEBSETID));
+					}else{
+						webset=webSetService.findById(1);
+					}
+					application.setAttribute(Constant.ALLWEBSETID, allWebSetId);
+					application.setAttribute(Constant.CURRENTWEBSET,webset);
 					return "webSet";
 				}
 			}
